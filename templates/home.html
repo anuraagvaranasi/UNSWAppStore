@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">
+<head>
+	<ul>
+		<li><a class="active"><b>UNSW App Store</b></a></li>
+		<li><a href="{{url_for('home')}}">Home</a></li>
+		<li><a href="{{url_for('top')}}">Top</a></li>
+		<li><a href="{{url_for('new')}}">New</a></li>
+
+	</ul>
+</head>
+
+<body>
+	{% for app_info in apps %}
+	<div class="boxes">
+		<a target="_blank" href={{app_info[3]}}><h2>{{app_info[0].capitalize()}}</h2></a>
+		<p>{{app_info[1]}}</p>
+		<i>{{app_info[2]}}</i>
+	</div>
+	{% endfor %}
+
+</body>
+
+</html>
