@@ -35,7 +35,7 @@ def download_file(app_name):
 #wrapper function to put all app details in a list
 def app_info(app_name):
 	app_info_list = [app_name]
-	app_info_list.append(return_app_desc(app_name))
+	app_info_list.append(limit_desc(return_app_desc(app_name)))
 	app_info_list.append(return_avg_rating(app_name))
 	app_info_list.append(return_url(app_name))
 	return app_info_list
@@ -48,6 +48,13 @@ def return_app_desc(app_name):
 		return f.read()
 	except IOError: #description doestn exist
 		return "No App Description"
+
+#limit the descrption length for boxes
+def limit_desc(desc):
+	if(len(desc) > 150):
+		return desc[:147] + "..."
+	else:
+		return desc
 
 #get average rating from list of ratings in txt document
 def return_avg_rating(app_name):
