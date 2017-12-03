@@ -22,6 +22,12 @@ def top():
 def new():
 	return redirect(url_for('home'))
 
+#given an app name, it returns the app icon
+#idea taken from a stackoverflow post (:
+@app.route('/uploads/<path:app_name>')
+def download_file(app_name):
+    dir = os.path.join(app_name,"icon.jpg")
+    return send_from_directory("apps",dir)
 
 #all functions that don't route to a webpage are below this
 #(so basically helper functions)

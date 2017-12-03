@@ -15,6 +15,7 @@
 	{% for app_info in apps %}
 	<div class="boxes">
 		<a target="_blank" href={{app_info[3]}}><h2>{{app_info[0].capitalize()}}</h2></a>
+		<img src="{{url_for('download_file',app_name=app_info[0])}}" height="50" width = "50">
 		<p>{{app_info[1]}}</p>
 		<i>{{app_info[2]}}</i>
 	</div>
