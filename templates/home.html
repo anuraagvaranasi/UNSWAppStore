@@ -15,20 +15,24 @@
 </head>
 
 <body>
-	<div class="container">
-		{% for app_info in apps %}
-		<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo{{loop.index}}">{{app_info[0].capitalize()}}<img src="{{url_for('download_file',app_name=app_info[0])}}" height="300px" width="300px"></button>
-  		<div id="demo{{loop.index}}" class="collapse">
-			<div class="boxes">
-				<img src="{{url_for('download_file',app_name=app_info[0])}}" height="50px" width="50px">
-				<a target="_blank" href={{app_info[3]}}><h2>{{app_info[0].capitalize()}}</h2></a>
-				
-				<p>{{app_info[1]}}</p>
-				<i>{{app_info[2]}}</i>
+	{% for app_info in apps %}
+	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo{{loop.index}}"><h1>{{app_info[0].capitalize()}}</h1><img src="{{url_for('download_file',app_name=app_info[0])}}" height="300px" width="300px"></button>
+		<div id="demo{{loop.index}}" class="collapse">
+		<div class="boxes">
+			<div class="container">
+				<div class="column">
+					<img src="{{url_for('download_file',app_name=app_info[0])}}" height="250px" width="250px">
+				</div>
+				<div class="column">
+					<a target="_blank" href={{app_info[3]}}><h2>{{app_info[0].capitalize()}}</h2></a>
+					
+					<p>{{app_info[1]}}</p>
+					<i>{{app_info[2]}}</i>
+				</div>
 			</div>
 		</div>
-		{% endfor %}
 	</div>
+	{% endfor %}
 </body>
 
 </html>
