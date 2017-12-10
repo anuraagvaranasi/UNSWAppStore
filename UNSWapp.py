@@ -51,7 +51,7 @@ def return_app_desc(app_name):
 
 #limit the descrption length for boxes
 def limit_desc(desc):
-	if(len(desc) > 150):
+	if(len(desc) > 500):
 		return desc[:147] + "..."
 	else:
 		return desc
