@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<head>
-	<nav>
-		<li><a class="active"><b>UNSW App Store</b></a></li>
-		<li><a href="{{url_for('home')}}">Home</a></li>
-		<li><a href="{{url_for('top')}}">Top</a></li>
-		<li><a href="{{url_for('new')}}">New</a></li>
+	<head>
+		<link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='default.css')}}" />
+		<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='component.css')}}" />
+		<script src="{{url_for('static',filename='modernizr.custom.js')}}"></script>
+		<nav>
+			<li><a class="active"><b>UNSW App Store</b></a></li>
+			<li><a href="{{url_for('home')}}">Home</a></li>
+			<li><a href="{{url_for('top')}}">Top</a></li>
+			<li><a href="{{url_for('new')}}">New</a></li>
 
-	</nav>
-</head>
-
-<body>
-	{% for app_info in apps %}
-	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo{{loop.index}}"><h1>{{app_info[0].capitalize()}}</h1><img src="{{url_for('download_file',app_name=app_info[0])}}" height="300px" width="300px"></button>
-		<div id="demo{{loop.index}}" class="collapse">
-		<div class="boxes">
-			<div class="container">
-				<div class="column">
-					<img src="{{url_for('download_file',app_name=app_info[0])}}" height="250px" width="250px">
-				</div>
-				<div class="column">
-					<a target="_blank" href={{app_info[3]}}><h2>{{app_info[0].capitalize()}}</h2></a>
-					
-					<p>{{app_info[1]}}</p>
-					<i>{{app_info[2]}}</i>
-				</div>
+		</nav>
+	</head>
+	<body>
+		<div class="container">	
+			<div class="main">
+				<ul id="og-grid" class="og-grid">
+					{% for x in range(10) %}
+					<li>
+						<a href="http://cargocollective.com/jaimemartinez/" data-largesrc="https://i.imgur.com/USaBj29.jpg" data-title="Azuki bean" data-description="This is the description text">
+							<img src="https://i.imgur.com/USaBj29.jpg" alt="img01" height="250px" width="250px"/>
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
 			</div>
 		</div>
-	</div>
-	{% endfor %}
-</body>
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="{{url_for('static',filename='grid.js')}}"></script>
+		<script>
+			$(function() {
+				Grid.init();
+			});
+		</script>
+	</body>
 </html>
