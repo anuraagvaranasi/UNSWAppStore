@@ -17,13 +17,23 @@
 		<div class="container">	
 			<div class="main">
 				<ul id="og-grid" class="og-grid">
-					{% for x in range(10) %}
+					{% for app_info in apps %}
 					<li>
-						<a href="http://cargocollective.com/jaimemartinez/" data-largesrc="https://i.imgur.com/USaBj29.jpg" data-title="Azuki bean" data-description="This is the description text">
-							<img src="https://i.imgur.com/USaBj29.jpg" alt="img01" height="250px" width="250px"/>
+						<a href="http://cargocollective.com/jaimemartinez/" data-largesrc="{{url_for('download_file',app_name=app_info[0])}}" data-title="Azuki bean" data-description="This is the description text">
+							<img src="{{url_for('download_file',app_name=app_info[0])}}" alt="img01" height="250px" width="250px"/>
 						</a>
 					</li>
 					{% endfor %}
+					<!-- white space padding here to align box to left side-->
+					<!-- (can't just float box to left as dropdown box breaks) -->
+					{% if (apps|length) % 5 != 0 %}
+						{% for x in range(4) %}
+						<li>
+							<img src="https://cdn03.boxcdn.net/sites/default/files/homepage/v2/images/hero/run/layer-4-320.png"  height="250px" width="250px"/>
+						</li>
+						{% endfor %}
+					{% endif %}
+					
 				</ul>
 			</div>
 		</div>
