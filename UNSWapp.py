@@ -1,23 +1,24 @@
 import os
 import re
 from flask import Flask, render_template, url_for, send_from_directory, redirect
-
+from operator import itemgetter
 app = Flask(__name__)
 
 #home page, only page for now lol
 @app.route('/')
 def home():
-	apps_list = []
-	for app in os.listdir("apps"):
-		apps_list.append(app_info(app))
+	apps_list = get_app_list()
 	return render_template("home.html",apps=apps_list)
 
 
-#all redirect to home for now, ceebs adding
+#sorts list using rating 
 @app.route('/top')
 def top():
-	return redirect(url_for('home'))
+	apps_list = get_app_list()
+	apps_list = sorted(apps_list,key=itemgetter(2))
+	return render_template("home.html",apps=apps_list)
 
+#havent implemented it yet, need to 
 @app.route('/new')
 def new():
 	return redirect(url_for('home'))
@@ -31,12 +32,16 @@ def download_file(app_name):
 
 #all functions that don't route to a webpage are below this
 #(so basically helper functions)
+def get_app_list():
+	apps_list = []
+	for app in os.listdir("apps"):
+		apps_list.append(app_info(app))
+	return apps_list
 
 #wrapper function to put all app details in a list
 def app_info(app_name):
 	app_info_list = [app_name]
-	app_info_list.append(limit_desc(return_app_desc(app_name)))
-	app_info_list.append(return_avg_rating(app_name))
+	app_info_list.append(return_app_desc(app_name) + "\n\n" + return_avg_rating(app_name))
 	app_info_list.append(return_url(app_name))
 	return app_info_list
 
@@ -49,7 +54,7 @@ def return_app_desc(app_name):
 	except IOError: #description doestn exist
 		return "No App Description"
 
-#limit the descrption length for boxes
+#limit the descrption length (if needed/too much text showing)
 def limit_desc(desc):
 	if(len(desc) > 500):
 		return desc[:147] + "..."

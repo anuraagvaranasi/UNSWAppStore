@@ -19,7 +19,7 @@
 				<ul id="og-grid" class="og-grid">
 					{% for app_info in apps %}
 					<li>
-						<a href="http://cargocollective.com/jaimemartinez/" data-largesrc="{{url_for('download_file',app_name=app_info[0])}}" data-title="Azuki bean" data-description="This is the description text">
+						<a href="{{app_info[2]}}" data-largesrc="{{url_for('download_file',app_name=app_info[0])}}" data-title="{{app_info[0].capitalize()}}" data-description="{{app_info[1]}}">
 							<img src="{{url_for('download_file',app_name=app_info[0])}}" alt="img01" height="250px" width="250px"/>
 						</a>
 					</li>
