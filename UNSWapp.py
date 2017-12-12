@@ -18,10 +18,13 @@ def top():
 	apps_list = sorted(apps_list,key=itemgetter(2))
 	return render_template("home.html",apps=apps_list)
 
-#havent implemented it yet, need to 
+#just a placeholder for now, just replicates apps to show a full page
 @app.route('/new')
 def new():
-	return redirect(url_for('home'))
+	apps_list = get_app_list()
+	for x in range(3):
+		apps_list += apps_list
+	return render_template("home.html",apps=apps_list)
 
 #given an app name, it returns the app icon
 #idea taken from a stackoverflow post (:
