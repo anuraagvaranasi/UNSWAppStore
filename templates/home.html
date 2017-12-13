@@ -19,18 +19,20 @@
 				<ul id="og-grid" class="og-grid">
 					{% for app_info in apps %}
 					<li>
-						<h1 style="color:grey">{{app_info[0].capitalize()}}</h1>
 						<a href="{{app_info[2]}}" data-largesrc="{{url_for('download_file',app_name=app_info[0])}}" data-title="{{app_info[0].capitalize()}}" data-description="{{app_info[1]}}">
-							<img src="{{url_for('download_file',app_name=app_info[0])}}" alt="img01" height="250px" width="250px"/>
+							<img src="{{url_for('download_file',app_name=app_info[0])}}" alt="img01" height="150px" width="150px"/>
 						</a>
+						<br>
+						<h1 style="color:grey">{{app_info[0].capitalize()}}</h1>
+
 					</li>
 					{% endfor %}
 					<!-- white space padding here to align box to left side-->
 					<!-- (can't just float box to left as dropdown box breaks) -->
-					{% if (apps|length) % 5 != 0 %}
-						{% for x in range(4) %}
+					{% if (apps|length) % 7 != 0 %}
+						{% for x in range(6) %}
 						<li>
-							<img src="https://cdn03.boxcdn.net/sites/default/files/homepage/v2/images/hero/run/layer-4-320.png"  height="250px" width="250px"/>
+							<img src="https://cdn03.boxcdn.net/sites/default/files/homepage/v2/images/hero/run/layer-4-320.png"  height="150px" width="150px"/>
 						</li>
 						{% endfor %}
 					{% endif %}
