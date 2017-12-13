@@ -14,12 +14,15 @@
 
 .og-grid li > a,
 .og-grid li > a img {
-	border: none;
 	outline: none;
 	display: block;
 	position: relative;
-	border-radius: 25px;
 	
+}
+
+.og-grid li > a img{
+	border-radius: 25px;
+	border:solid 5px lightgrey;
 }
 
 .og-grid li.og-expanded > a::after {
@@ -107,6 +110,8 @@
 	display: inline-block;
 	max-height: 100%;
 	max-width: 100%;
+	border-radius: 25px;
+
 }
 
 .og-details h3 {
